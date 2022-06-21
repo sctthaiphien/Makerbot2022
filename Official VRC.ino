@@ -104,10 +104,10 @@ void controlDC(uint16_t leftSpeed, uint16_t rightSpeed) {
   pwm.setPWM(14, 0, 0);
   pwm.setPWM(15, 0, rightSpeed);
 }
-void controlBackward() {
-  pwm.setPWM(8, 0, 2000);
+void controlBackward(uint16_t leftSpeed, uint16_t rightSpeed) {
+  pwm.setPWM(8, 0, leftSpeed);
   pwm.setPWM(9, 0, 0);
-  pwm.setPWM(14, 0, 2000);
+  pwm.setPWM(14, 0, rightSpeed);
   pwm.setPWM(15, 0, 0);
 }
 void turnLeft() {
@@ -147,13 +147,15 @@ void lineFollowing_1() {
   char cSen_Status = 0b00000000;
   cSen_Status = cRead_Sensor();
   if (cSen_Status == 0b00000110 || cSen_Status == 0b00000100 || cSen_Status == 0b00000010 || cSen_Status == 0b00001111) {
-    controlBackward();
+    controlBackward(1000, 1000);
+    delay(100);
   } else if (cSen_Status == 0b00000001 || cSen_Status == 0b00000011 || cSen_Status == 0b00000111) {
-    turnLeft();
-  } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110) {
     turnRight();
+  } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110) {
+    turnLeft();
   } else if (cSen_Status == 0b00000000) {
-    controlDC(2000, 2000);
+    controlDC(1000, 1000);
+    delay(50);
   }
 }
 
@@ -161,13 +163,16 @@ void lineFollowing_2() {
   char cSen_Status = 0b00000000;
   cSen_Status = cRead_Sensor();
   if (cSen_Status == 0b00000110 || cSen_Status == 0b00000100 || cSen_Status == 0b00000010) {
-    controlBackward();
+    controlBackward(1000, 1000);
+    delay(100);
   } else if (cSen_Status == 0b00000001 || cSen_Status == 0b00000011 || cSen_Status == 0b00000111) {
-    turnLeft();
-  } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110 || cSen_Status == 0b00001111) {
     turnRight();
+  } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110 || cSen_Status == 0b00001111) {
+    turnLeft();
+    delay(300);
   } else if (cSen_Status == 0b00000000) {
-    controlDC(2000, 2000);
+    controlDC(1000, 1000);
+    delay(50);
   }
 }
 
@@ -175,13 +180,16 @@ void lineFollowing_3() {
   char cSen_Status = 0b00000000;
   cSen_Status = cRead_Sensor();
   if (cSen_Status == 0b00000110 || cSen_Status == 0b00000100 || cSen_Status == 0b00000010) {
-    controlBackward();
+    controlBackward(1000, 1000);
+    delay(100);
   } else if (cSen_Status == 0b00000001 || cSen_Status == 0b00000011 || cSen_Status == 0b00000111 || cSen_Status == 0b00001111) {
-    turnLeft();
-  } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110) {
     turnRight();
+    delay(300);
+  } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110) {
+    turnLeft();
   } else if (cSen_Status == 0b00000000) {
-    controlDC(2000, 2000);
+    controlDC(1000, 1000);
+    delay(50);
   }
 }
 
@@ -210,7 +218,7 @@ void ps2Control() {
   };
   // MOVE BACK
   if (ps2x.Button(PSB_PAD_DOWN)) {
-    controlBackward();
+    controlBackward(2000, 2000);
   };
   if (ps2x.ButtonReleased(PSB_PAD_UP) || ps2x.ButtonReleased(PSB_PAD_DOWN) || ps2x.ButtonReleased(PSB_PAD_LEFT) || ps2x.ButtonReleased(PSB_PAD_RIGHT)) {
     controlDC(0, 0);
@@ -224,9 +232,9 @@ void ps2Control() {
     liftDC(0, 0);
   }
   if (ps2x.Button(PSB_L1)) {
-    pushDC(0, 700);
+    pushDC(0, 500);
   } else if (ps2x.Button(PSB_R1)) {
-    pushDC(1500, 0);
+    pushDC(1200, 0);
   } else if (ps2x.ButtonReleased(PSB_R1) || ps2x.ButtonReleased(PSB_L1)) {
     pushDC(0, 0);
   }
@@ -261,10 +269,10 @@ void ps2Control() {
         lineFollowing_1();
       } else if (millis() - timeRan_Line_1 >= 5000 && millis() - timeRan_Line_1 <= 6000) {
         controlDC(0, 0);
-        pushDC(1500, 0);
+        pushDC(1300, 0);
       } else if (millis() - timeRan_Line_1 >= 6000 && millis() - timeRan_Line_1 <= 8500) {
         pushDC(0, 0);
-        controlBackward();
+        controlBackward(1000, 1000);
       }
   }
 
@@ -283,7 +291,7 @@ void ps2Control() {
         pushDC(1500, 0);
       } else if (millis() - timeRan_Line_2 >= 6000 && millis() - timeRan_Line_2<= 8500) {
         pushDC(0, 0);
-        controlBackward();
+        controlBackward(1000, 1000);
       }
   }
 
@@ -302,7 +310,7 @@ void ps2Control() {
         pushDC(1500, 0);
       } else if (millis() - timeRan_Line_3 >= 6000 && millis() - timeRan_Line_3 <= 8500) {
         pushDC(0, 0);
-        controlBackward();
+        controlBackward(1000, 1000);
       }
   }
   // SERVO 180
