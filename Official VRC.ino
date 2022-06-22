@@ -146,14 +146,14 @@ char cRead_Sensor() {
 void lineFollowing_1() {
   char cSen_Status = 0b00000000;
   cSen_Status = cRead_Sensor();
-  if (cSen_Status == 0b00000110 || cSen_Status == 0b00000100 || cSen_Status == 0b00000010 || cSen_Status == 0b00001111) {
+  if (cSen_Status == 0b00000110 || cSen_Status == 0b00000100 || cSen_Status == 0b00000010) {
     controlBackward(1000, 1000);
     delay(100);
   } else if (cSen_Status == 0b00000001 || cSen_Status == 0b00000011 || cSen_Status == 0b00000111) {
-    turnRight();
+    controlBackward(1000, 350);
   } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110) {
-    turnLeft();
-  } else if (cSen_Status == 0b00000000) {
+    controlBackward(350, 1000);
+  } else if (cSen_Status == 0b00000000 || cSen_Status == 0b00001111) {
     controlDC(1000, 1000);
     delay(50);
   }
@@ -166,10 +166,10 @@ void lineFollowing_2() {
     controlBackward(1000, 1000);
     delay(100);
   } else if (cSen_Status == 0b00000001 || cSen_Status == 0b00000011 || cSen_Status == 0b00000111) {
-    turnRight();
+    controlBackward(1000, 350);
   } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110 || cSen_Status == 0b00001111) {
-    turnLeft();
-    delay(300);
+    controlBackward(350, 1000);
+    delay(200);
   } else if (cSen_Status == 0b00000000) {
     controlDC(1000, 1000);
     delay(50);
@@ -183,10 +183,10 @@ void lineFollowing_3() {
     controlBackward(1000, 1000);
     delay(100);
   } else if (cSen_Status == 0b00000001 || cSen_Status == 0b00000011 || cSen_Status == 0b00000111 || cSen_Status == 0b00001111) {
-    turnRight();
+    controlBackward(1000, 350);
     delay(300);
   } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110) {
-    turnLeft();
+    controlBackward(350, 1000);
   } else if (cSen_Status == 0b00000000) {
     controlDC(1000, 1000);
     delay(50);
