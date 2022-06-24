@@ -257,12 +257,12 @@ void ps2Control() {
       controlDC(0, 0);
       break;
     case 1:
-      if (millis() - timeRan_Line_1 <= 5000) {
+      if (millis() - timeRan_Line_1 <= 6000) {
         lineFollowing_1();
-      } else if (millis() - timeRan_Line_1 >= 5000 && millis() - timeRan_Line_1 <= 6000) {
+      } else if (millis() - timeRan_Line_1 >= 6000 && millis() - timeRan_Line_1 <= 6750) {
         controlDC(0, 0);
         pushDC(1700, 0);
-      } else if (millis() - timeRan_Line_1 >= 6000 && millis() - timeRan_Line_1 <= 8500) {
+      } else if (millis() - timeRan_Line_1 >= 6750 && millis() - timeRan_Line_1 <= 8000) {
         pushDC(0, 0);
         controlBackward(1000, 1000);
       }
@@ -276,12 +276,12 @@ void ps2Control() {
       controlDC(0, 0);
       break;
     case 1:
-      if (millis() - timeRan_Line_2 <= 5000) {
+      if (millis() - timeRan_Line_2 <= 6000) {
         lineFollowing_2();
-      } else if (millis() - timeRan_Line_2 >= 5000 && millis() - timeRan_Line_2 <= 6000) {
+      } else if (millis() - timeRan_Line_2 >= 6000 && millis() - timeRan_Line_2 <= 6750) {
         controlDC(0, 0);
         pushDC(1700, 0);
-      } else if (millis() - timeRan_Line_2 >= 6000 && millis() - timeRan_Line_2<= 8500) {
+      } else if (millis() - timeRan_Line_2 >= 6750 && millis() - timeRan_Line_2<= 8000) {
         pushDC(0, 0);
         controlBackward(1000, 1000);
       }
@@ -295,12 +295,12 @@ void ps2Control() {
       controlDC(0, 0);
       break;
     case 1:
-      if (millis() - timeRan_Line_3 <= 5000) {
+      if (millis() - timeRan_Line_3 <= 6000) {
         lineFollowing_3();
-      } else if (millis() - timeRan_Line_3 >= 5000 && millis() - timeRan_Line_3 <= 6000) {
+      } else if (millis() - timeRan_Line_3 >= 6000 && millis() - timeRan_Line_3 <= 6750) {
         controlDC(0, 0);
         pushDC(1700, 0);
-      } else if (millis() - timeRan_Line_3 >= 6000 && millis() - timeRan_Line_3 <= 8500) {
+      } else if (millis() - timeRan_Line_3 >= 6750 && millis() - timeRan_Line_3 <= 8000) {
         pushDC(0, 0);
         controlBackward(1000, 1000);
       }
