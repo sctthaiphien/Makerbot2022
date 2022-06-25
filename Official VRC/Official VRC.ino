@@ -152,7 +152,7 @@ void lineFollowing_1() {
     controlBackward(1000, 100);
   } else if (cSen_Status == 0b00001000 || cSen_Status == 0b00001100 || cSen_Status == 0b00001110) {
     controlBackward(100, 1000);
-  } else if (cSen_Status == 0b00000000 || cSen_Status == 0b00001111) {
+  } else if (cSen_Status == 0b00000000) {
     controlDC(1000, 1000);
   }
 }
@@ -262,9 +262,11 @@ void ps2Control() {
       } else if (millis() - timeRan_Line_1 >= 6000 && millis() - timeRan_Line_1 <= 6750) {
         controlDC(0, 0);
         pushDC(1700, 0);
-      } else if (millis() - timeRan_Line_1 >= 6750 && millis() - timeRan_Line_1 <= 8000) {
+      } else if (millis() - timeRan_Line_1 >= 6750 && millis() - timeRan_Line_1 <= 7750) {
+        pushDC(0, 500);
+      } else if (millis() - timeRan_Line_1 >= 7750 && millis() - timeRan_Line_1 <= 9000) {
         pushDC(0, 0);
-        controlBackward(1000, 1000);
+        controlDC(1000, 1000);
       }
   }
 
@@ -281,9 +283,11 @@ void ps2Control() {
       } else if (millis() - timeRan_Line_2 >= 6000 && millis() - timeRan_Line_2 <= 6750) {
         controlDC(0, 0);
         pushDC(1700, 0);
-      } else if (millis() - timeRan_Line_2 >= 6750 && millis() - timeRan_Line_2<= 8000) {
+      } else if (millis() - timeRan_Line_2 >= 6750 && millis() - timeRan_Line_2 <= 7750) {
+        pushDC(0, 500);
+      } else if (millis() - timeRan_Line_2 >= 7750 && millis() - timeRan_Line_2 <= 9000) {
         pushDC(0, 0);
-        controlBackward(1000, 1000);
+        controlDC(1000, 1000);
       }
   }
 
@@ -300,9 +304,11 @@ void ps2Control() {
       } else if (millis() - timeRan_Line_3 >= 6000 && millis() - timeRan_Line_3 <= 6750) {
         controlDC(0, 0);
         pushDC(1700, 0);
-      } else if (millis() - timeRan_Line_3 >= 6750 && millis() - timeRan_Line_3 <= 8000) {
+      } else if (millis() - timeRan_Line_3 >= 6750 && millis() - timeRan_Line_3 <= 7750) {
+        pushDC(0, 500);
+      } else if (millis() - timeRan_Line_3 >= 7750 && millis() - timeRan_Line_3 <= 9000) {
         pushDC(0, 0);
-        controlBackward(1000, 1000);
+        controlDC(1000, 1000);
       }
   }
   // SERVO 180
